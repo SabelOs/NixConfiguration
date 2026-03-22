@@ -8,6 +8,7 @@
       ../../modules/nixos/audio.nix #enable audio (pipewire)
       ../../modules/nixos/hyprlandHomeManager.nix #enable hyprland
       ../../modules/nixos/bluetooth.nix
+      ../../modules/nixos/steam.nix
     ];
 
   # Bootloader.
