@@ -19,6 +19,7 @@
     nautilus
     btop
     walker
+    
     udiskie
     hyprshutdown
     hyprpaper

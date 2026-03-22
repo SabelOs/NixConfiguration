@@ -8,11 +8,23 @@
 
   services.dunst.enable = true;
 
-  home.packages = with pkgs; [
-    libnotify
-    hyprshutdown
-    hyprlock
+ home.packages = with pkgs; [
+  libnotify
+  hyprshutdown
+  hyprlock
+  (pkgs.writeShellScriptBin "power-menu" ''
+    options="  Lock\n󰜉  Restart\n󰐥  Shutdown"
+
+    choice=$(echo -e "$options" | walker --dmenu -p "System")
+
+    case "$choice" in
+      *Lock*) hyprlock ;;
+      *Restart*) hyprshutdown reboot ;;
+      *Shutdown*) hyprshutdown shutdown ;;
+    esac
+  '')
   ];
+
   #this part is almost completely copied from saneAspect's YT video: https://www.youtube.com/watch?v=w1VZJX4JAdE&t 
   programs.waybar.settings.main = {
     position = "top";
@@ -34,7 +46,7 @@
     "custom/power" = {
       "format" = "";
       "tooltip" = false;
-      "on-click" = "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'";
+      "on-click" = "power-menu";
     };
     
     "hyprland/workspaces" = {
@@ -130,8 +142,8 @@
   programs.waybar.style =''
     @define-color bg0 #0d0b0b;
     @define-color bg-hover #3c3836;
-    @define-color numbers-inactive #d5c4a1;
-    @define-color fg0 #fbf1c7;
+    @define-color numbers-inactive #C9CCDE;
+    @define-color fg0 #E9E8EF;
     * {
       border: none;
       border-radius: 0px;
@@ -168,7 +180,7 @@
     }
 
     #workspaces button.active {
-      background: linear-gradient(135deg, #fbf1c7 0%, #88c0d0 50%, #13345c 100%);
+      background: linear-gradient(135deg, @fg0 0%, #88c0d0 50%, #13345c 100%);
       color: @bg-hover;
       min-width: 40px;
       transition: all 0.3s ease-in-out;
@@ -208,27 +220,4 @@
     #cpu { color: @fg0; margin-left: 12px; }
     '';
     
-  xdg.configFile."walker/modules/power.json".text = ''
-    {
-      "name": "Power",
-      "entries": [
-        {
-          "label": " Lock",
-          "exec": "hyprlock"
-        },
-        {
-          "label": " Suspend",
-          "exec": "systemctl suspend"
-        },
-        {
-          "label": " Reboot",
-          "exec": "hyprshutdown reboot"
-        },
-        {
-          "label": " Shutdown",
-          "exec": "hyprshutdown shutdown"
-        }
-      ]
-    }
-    '';
 }
