@@ -76,6 +76,10 @@
         "$mod SHIFT, N, exec, code"
         "$mod SHIFT, F, exec, nautilus"
         "$mod, SPACE, exec, walker"
+        "$mod SHIFT, M, exec, spotify"
+        "$mod SHIFT, G, exec, firefox --new-window https://web.whatsapp.com/"
+        "$mod SHIFT ALT, G, exec, firefox --new-tab https://web.whatsapp.com/"
+        "$mod SHIFT, H, exec, firefox --new-window https://ha.soeke.net/"
         
         #close windows
         "$mod, W, killactive"
@@ -165,7 +169,7 @@
         "$mod, MOUSE_DOWN, Scroll active workspace forward, workspace, e+1"
         "$mod, MOUSE_UP, Scroll active workspace backward, workspace, e-1"
 
-        # Copy / Paste
+        # Copy / Paste (not working)
         "$mod, C, Universal copy, sendshortcut, CTRL, Insert,"
         "$mod, V, Universal paste, sendshortcut, SHIFT, Insert,"
         "$mod CTRL, V, Clipboard manager, exec, cliphist list | walker -d"

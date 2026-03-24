@@ -11,9 +11,28 @@
       #../../modules/nixos/steam.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+
+    systemd-boot = {
+      enable = true;
+
+      windows = {
+        "windows" =
+          let
+            boot-drive = "HD0b"; # temporary placeholder!
+          in
+          {
+            title = "Windows 11";
+            efiDeviceHandle = boot-drive;
+            sortKey = "y_windows";
+          };
+      };
+
+      edk2-uefi-shell.enable = true;
+      edk2-uefi-shell.sortKey = "z_edk2";
+    };
+  };
 
   networking.hostName = "Soeke-Red-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

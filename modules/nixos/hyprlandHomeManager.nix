@@ -19,7 +19,7 @@
     nautilus
     btop
     walker
-    
+    spotify
     udiskie
     hyprshutdown
     hyprpaper
@@ -31,4 +31,8 @@
   #auto mount usb:
   services.udisks2.enable = true;
   services.gvfs.enable = true; # Optional, helps file managers
+
+  #spotify configurations:
+  networking.firewall.allowedTCPPorts = [ 57621 ];
+  networking.firewall.allowedUDPPorts = [ 5353 ];
 }

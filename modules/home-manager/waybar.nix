@@ -19,8 +19,8 @@
 
     case "$choice" in
       *Lock*) hyprlock ;;
-      *Restart*) hyprshutdown reboot ;;
-      *Shutdown*) hyprshutdown shutdown ;;
+      *Restart*) hyprshutdown -t 'Restarting...' --post-cmd 'reboot' ;;
+      *Shutdown*) hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0' ;;
     esac
   '')
   ];
