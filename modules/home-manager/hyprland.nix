@@ -64,6 +64,10 @@
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
     ];
+    general = {
+        gaps_in = 4;
+        gaps_out = 4;
+    };
 
     input = {
         kb_layout = "de";
@@ -81,7 +85,7 @@
         "$mod SHIFT, G, exec, firefox --new-window https://web.whatsapp.com/"
         "$mod SHIFT ALT, G, exec, firefox --new-tab https://web.whatsapp.com/"
         "$mod SHIFT, H, exec, firefox --new-window https://ha.soeke.net/"
-        "$mod ALT, Space, exec, power-menu"
+        "$mod ALT, P, exec, power-menu"
         #close windows
         "$mod, W, killactive"
         "CTRL ALT, DELETE, exec, hyprshutdown --no-exit"
@@ -94,15 +98,18 @@
     ];
 
     workspace = [
-        "w[tv1], gapsout:0, gapsin:0"
-        "f[1], gapsout:0, gapsin:0"
+        "w[tv1], gapsout:4, gapsin:4"
+        "f[1], gapsout:4, gapsin:4"
     ];
     windowrule= [
         "border_size 0, match:float 0, match:workspace w[tv1]s[false]"
-        "rounding 0, match:float 0, match:workspace w[tv1]s[false]"
-        "border_size 0, match:float 0, match:workspace f[1]s[false]"
-        "rounding 0, match:float 0, match:workspace f[1]s[false]"
+        "rounding 12, match:workspace w[tv1]"
+        "rounding 12, match:float 0, match:workspace f[1]s[false]"
     ];
+
+    decoration = {
+        rounding = 12;
+    };
 
     bindd = [
         # Control tiling

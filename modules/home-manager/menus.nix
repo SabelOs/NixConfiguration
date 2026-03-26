@@ -7,14 +7,14 @@
     # POWER MENU (you already had)
     ################################
     (pkgs.writeShellScriptBin "power-menu" ''
-      options="  Lock\n󰜉  Restart\n󰐥  Shutdown"
+      options="󰐥  Shutdown\n   Lock\n󰜉  Restart"
 
       choice=$(echo -e "$options" | walker --dmenu -p "System")
 
       case "$choice" in
-        *Lock*) hyprlock ;;
-        *Restart*) hyprshutdown -t 'Restarting...' --post-cmd 'reboot' ;;
         *Shutdown*) hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0' ;;
+        *Restart*) hyprshutdown -t 'Restarting...' --post-cmd 'reboot' ;;
+        *Lock*) hyprlock ;;
       esac
     '')
 
@@ -28,10 +28,10 @@
 
       case "$choice" in
         *Test*)
-          kitty -e bash -c "sudo nixos-rebuild test --flake .#soekeHypr; read"
+          kitty -e bash -c "sudo nixos-rebuild test --flake .#soekeHypr || read"
           ;;
         *Switch*)
-          kitty -e bash -c "sudo nixos-rebuild switch --flake .#soekeHypr; read"
+          kitty -e bash -c "sudo nixos-rebuild switch --flake .#soekeHypr || read"
           ;;
         *Search*)
           # clean + non-hacky: just open interactive search
@@ -76,11 +76,12 @@
     # MAIN HUB MENU
     ################################
     (pkgs.writeShellScriptBin "main-menu" ''
-      options="󰣇  Apps\n  Nix\n󰒓  Utilities\n󰝚  Media\n  Power"
+      options="  Power\n  Apps\n  Nix\n󰒓  Utilities\n󰝚  Media"
 
       choice=$(echo -e "$options" | walker --dmenu -p "Menu")
 
       case "$choice" in
+        *Power*) power-menu ;;
         *Apps*)
           # fallback to normal walker launcher
           walker
@@ -88,7 +89,6 @@
         *Nix*) nix-menu ;;
         *Utilities*) utility-menu ;;
         *Media*) media-menu ;;
-        *Power*) power-menu ;;
         *)
           # VERY IMPORTANT: fallback → treat input as app search
           walker --dmenu <<< "$choice"

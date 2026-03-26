@@ -17,8 +17,8 @@
   #this part is almost completely copied from saneAspect's YT video: https://www.youtube.com/watch?v=w1VZJX4JAdE&t 
   programs.waybar.settings.main = {
     position = "top";
-    "margin-top" = 18;
-    "margin-bottom" = 9;
+    "margin-top" = 8;
+    "margin-bottom" = 6;
 
     "modules-center" = [
       "custom/power"
