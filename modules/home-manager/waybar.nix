@@ -12,17 +12,6 @@
   libnotify
   hyprshutdown
   hyprlock
-  (pkgs.writeShellScriptBin "power-menu" ''
-    options="  Lock\n󰜉  Restart\n󰐥  Shutdown"
-
-    choice=$(echo -e "$options" | walker --dmenu -p "System")
-
-    case "$choice" in
-      *Lock*) hyprlock ;;
-      *Restart*) hyprshutdown -t 'Restarting...' --post-cmd 'reboot' ;;
-      *Shutdown*) hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0' ;;
-    esac
-  '')
   ];
 
   #this part is almost completely copied from saneAspect's YT video: https://www.youtube.com/watch?v=w1VZJX4JAdE&t 

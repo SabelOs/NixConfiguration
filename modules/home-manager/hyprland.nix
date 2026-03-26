@@ -70,6 +70,7 @@
     };
 
     bind = [
+        "$mod ALT, Space, exec, main-menu"
         #programs binds:
         "$mod SHIFT, B, exec, firefox"
         "$mod, Q, exec, kitty"    # open terminal
@@ -80,7 +81,7 @@
         "$mod SHIFT, G, exec, firefox --new-window https://web.whatsapp.com/"
         "$mod SHIFT ALT, G, exec, firefox --new-tab https://web.whatsapp.com/"
         "$mod SHIFT, H, exec, firefox --new-window https://ha.soeke.net/"
-        
+        "$mod ALT, Space, exec, power-menu"
         #close windows
         "$mod, W, killactive"
         "CTRL ALT, DELETE, exec, hyprshutdown --no-exit"
