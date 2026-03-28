@@ -36,5 +36,13 @@
         stylix.nixosModules.stylix
       ];
     };
+    nixosConfigurations.HyprLeerhafe = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/hyprlandLeerhafe/configuration.nix
+        home-manager.nixosModules.home-manager
+        stylix.nixosModules.stylix
+      ];
+    };
   };
 }
