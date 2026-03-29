@@ -7,6 +7,7 @@
     ../../modules/home-manager/waybar.nix
     ../../modules/home-manager/stylix.nix
     ../../modules/home-manager/menus.nix
+    ./monitors.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

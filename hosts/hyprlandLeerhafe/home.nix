@@ -2,11 +2,12 @@
 { config, inputs, pkgs, ... }:
 
 {
-  imports = [
-    ../../modules/home-manager/hyprland.nix
-    ../../modules/home-manager/waybar.nix
-    ../../modules/home-manager/stylix.nix
-    ../../modules/home-manager/menus.nix
+imports = [
+  ../../modules/home-manager/hyprland.nix
+  ../../modules/home-manager/waybar.nix
+  #../../modules/home-manager/stylix.nix
+  ../../modules/home-manager/menus.nix
+  home-manager.nixosModules.default
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

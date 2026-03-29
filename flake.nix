@@ -40,7 +40,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/hyprlandLeerhafe/configuration.nix
-        home-manager.nixosModules.home-manager
+        home-manager.nixosModules.default
         stylix.nixosModules.stylix
       ];
     };

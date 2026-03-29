@@ -3,6 +3,7 @@
 {
     imports = [
         inputs.walker.homeManagerModules.default
+        home-manager.nixosModules.default
     ];
     home.packages = with pkgs; [
         wl-clipboard
@@ -27,9 +28,6 @@
         runAsService = true; # Improves launch speed
     };
     
-    programs.elephant = {
-        enable = true;
-    };
 
     home.sessionVariables.ELEPHANT_RUN_PATHS = ''
         ${pkgs.coreutils}/bin
@@ -72,6 +70,12 @@
     input = {
         kb_layout = "de";
     };
+    
+    monitor = [
+        "DP-1, 2560x1440@180, 0x0, 1"
+        "HDMI-A-1, 1920x1080@60, 2560x-240, 1, transform, 1"
+        "HDMI-A-2, 1920x1080@60, 3640x0, 1"
+    ];
 
     bind = [
         "$mod ALT, Space, exec, main-menu"

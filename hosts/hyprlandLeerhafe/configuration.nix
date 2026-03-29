@@ -9,19 +9,11 @@
       ../../modules/nixos/hyprlandHomeManager.nix #enable hyprland
       ../../modules/nixos/bluetooth.nix
       #../../modules/nixos/steam.nix
-      ./monitors.nix
     ];
 
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-
-    systemd-boot = {
-      enable = true;
-
-      edk2-uefi-shell.enable = true;
-      edk2-uefi-shell.sortKey = "z_edk2";
-    };
-  };
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "Soeke-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -60,7 +52,11 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
-
+  
+  services.xserver.xkb = {
+    layout = "de";
+  };
+  
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     #useGlobalPkgs = true;
